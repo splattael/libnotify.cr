@@ -6,6 +6,8 @@ Bindings for [GNOME's Libnotify](https://developer.gnome.org/libnotify/).
 
 For the Ruby version see https://rubygems.org/gems/libnotify.
 
+![libnotify](https://github.com/splattael/libnotify.cr/raw/master/images/screenshot-gnome3.png)
+
 ## Installation
 
 Add this to your application's `shard.yml`:
