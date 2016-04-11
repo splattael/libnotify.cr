@@ -7,6 +7,28 @@ module Libnotify
     fun notify_init(app_name : LibC::Char*) : Bool
     fun notify_uninit() : Void
     fun notify_is_initted() : Bool
+    fun notify_get_app_name() : LibC::Char*
+    fun notify_set_app_name(LibC::Char*) : Void
+
+    # GList *             notify_get_server_caps  (void);
+    # gboolean            notify_get_server_info  (char **ret_name,
+    #                                              char **ret_vendor,
+    #                                              char **ret_version,
+    #                                              char **ret_spec_version);
+
+
+    # NotifyNotification * notify_notification_new            (const char *summary,
+    #                                                          const char *body,
+    #                                                          const char *icon);
+    fun notify_notification_new(summary : LibC::Char*,
+                                body : LibC::Char*,
+                                icon : LibC::Char*) : Void*
+
+    # gboolean            notify_notification_update          (NotifyNotification *notification,
+    #                                                          const char *summary,
+    #                                                          const char *body,
+    #                                                          const char *icon);
+    fun notify_notification_show(notification : Void*, gerror : Void**) : Bool
   end
 
 end
