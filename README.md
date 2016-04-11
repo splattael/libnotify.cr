@@ -1,6 +1,10 @@
-# libnotify
+# Libnotify for Crystal
 
-TODO: Write a description here
+:warning: :construction: :construction: :construction: :warning:
+
+Bindings for [GNOME's Libnotify](https://developer.gnome.org/libnotify/).
+
+For the Ruby version see https://rubygems.org/gems/libnotify.
 
 ## Installation
 
@@ -10,31 +14,42 @@ Add this to your application's `shard.yml`:
 dependencies:
   libnotify:
     github: splattael/libnotify
+    version: ~> 0.1.0
 ```
 
 ### Debian
 
 ```
-apt-get install libnotify-dev
+apt-get install libnotify
 ```
 
 
 ## Usage
 
-
 ```crystal
 require "libnotify"
+
+# TODO
 ```
 
-Run `crystal spec`
+For now just run: `make spec`
+
 
 ## Development
 
-TODO: Write development instructions here
+* `make update`
+* `make spec`
+
+### Debian
+
+```
+apt-get install libnotify
+```
+
 
 ## Contributing
 
-1. Fork it ( https://github.com/splattael/libnotify.cr/fork )
+1. [Fork it](https://github.com/splattael/libnotify.cr/fork)
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
