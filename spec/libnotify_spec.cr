@@ -23,7 +23,10 @@ describe Libnotify do
     end
 
     it "new" do
-      notify = Libnotify::C.notify_notification_new("test me", Time.now.to_s, nil)
+      summary = "Libnotify + Crystal"
+      body = "version 0.1.0"
+      icon_path = File.expand_path("images/crystal-120x120.png")
+      notify = Libnotify::C.notify_notification_new(summary, body, icon_path)
       notify.should be_truthy
 
       Libnotify::C.notify_notification_show(notify, nil)
