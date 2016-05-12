@@ -31,5 +31,17 @@ describe Libnotify do
 
       Libnotify::C.notify_notification_show(notify, nil)
     end
+
+    it "update" do
+      summary = "Libnotify + Crystal UPDATED"
+      body = "version 0.1.0 UPDATED"
+      icon_path = File.expand_path("images/crystal-120x120.png")
+      notify = Libnotify::C.notify_notification_new(nil, nil, nil)
+
+      result = Libnotify::C.notify_notification_update(notify, summary, body, icon_path)
+      result.should be_truthy
+
+      Libnotify::C.notify_notification_show(notify, nil)
+    end
   end
 end
