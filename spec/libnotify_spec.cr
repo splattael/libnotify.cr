@@ -15,11 +15,11 @@ describe Libnotify do
     it "gets and sets app name" do
       Libnotify::C.notify_init("test")
       app_name = Libnotify::C.notify_get_app_name
-      String.new(app_name, 4).should eq("test")
+      String.new(app_name).should eq("test")
 
       Libnotify::C.notify_set_app_name("bar")
       app_name = Libnotify::C.notify_get_app_name
-      String.new(app_name, 3).should eq("bar")
+      String.new(app_name).should eq("bar")
     end
 
     it "new" do
