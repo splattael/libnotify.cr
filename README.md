@@ -44,8 +44,24 @@ For now just run: `make spec`
 
 ## Development
 
-* `make update`
-* `make spec`
+```
+$ make update
+$ make spec
+```
+
+### Debian
+
+```
+$ apt-get install libnotify
+```
+
+### Generate libnotify/c.cr
+
+```
+$ git clone https://github.com/crystal-lang/crystal_lib
+$ cd crystal_lib
+$ ./main < ../libnotify.cr/crystal_lib/libnotify.cr  > ../libnotify.cr/src/libnotify/c.cr
+```
 
 
 ## Contributing
