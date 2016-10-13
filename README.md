@@ -15,14 +15,15 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   libnotify:
-    github: splattael/libnotify
-    version: ~> 0.1.0
+    github: splattael/libnotify.cr
 ```
 
-### Debian
+### Linux
 
 ```
-apt-get install libnotify
+apt-get install libnotify # debian
+pacman -S libnotify       # archlinux
+dnf install libnotify     # fedora
 ```
 
 
@@ -31,7 +32,11 @@ apt-get install libnotify
 ```crystal
 require "libnotify"
 
-# TODO
+Libnotify::C.notify_init("test")
+icon_path = File.expand_path("images/crystal-120x120.png")
+notify = Libnotify::C.notify_notification_new("summary", "body", icon_path)
+Libnotify::C.notify_notification_show(notify, nil)
+
 ```
 
 For now just run: `make spec`
@@ -41,12 +46,6 @@ For now just run: `make spec`
 
 * `make update`
 * `make spec`
-
-### Debian
-
-```
-apt-get install libnotify
-```
 
 
 ## Contributing
