@@ -30,11 +30,16 @@ describe Libnotify::Notification do
     end
     n.body = "Should not be displayed"
     n.show
+    n.update # not displayed either
+
+    sleep 0.5
 
     n = Libnotify::Notification.new "update 2" do |n|
       n.body = "Should not be displayed"
     end
     n.body = "Should be displayed"
     n.update.show
+
+    n = Libnotify::Notification.new summary: "big", body: "body text"
   end
 end
