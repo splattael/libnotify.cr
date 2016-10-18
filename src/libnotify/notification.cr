@@ -3,7 +3,7 @@ require "./c"
 class Libnotify::Notification
   property summary : String?
   property body : String?
-  property icon : String?
+  property icon_path : String?
   property app_name : String
   property timeout : Int32
   property category : String?
@@ -11,21 +11,21 @@ class Libnotify::Notification
   property transient : Bool
   property urgency : Libnotify::C::Notifyurgency
 
-  def initialize(@summary = nil, @body = nil, @icon = nil,
+  def initialize(@summary = nil, @body = nil, @icon_path = nil,
                  @timeout = -1, @category = nil, @urgency = Libnotify::C::Notifyurgency::NotifyUrgencyNormal,
                  @append = false, @transient = true,
                  @app_name = "default")
     init_app!
-    @notify = C.notification_new @summary.to_s, @body.to_s, @icon.to_s
+    @notify = C.notification_new @summary.to_s, @body.to_s, @icon_path.to_s
     update
   end
 
-  def initialize(@summary = nil, @body = nil, @icon = nil,
+  def initialize(@summary = nil, @body = nil, @icon_path = nil,
                  @timeout = -1, @category = nil, @urgency = Libnotify::C::Notifyurgency::NotifyUrgencyNormal,
                  @append = false, @transient = true,
                  @app_name = "default", &block)
     init_app!
-    @notify = C.notification_new @summary.to_s, @body.to_s, @icon.to_s
+    @notify = C.notification_new @summary.to_s, @body.to_s, @icon_path.to_s
     yield self
     update
   end
@@ -36,7 +36,7 @@ class Libnotify::Notification
   end
 
   def update
-    C.notification_update @notify, @summary.to_s, @body.to_s, @icon.to_s
+    C.notification_update @notify, @summary.to_s, @body.to_s, @icon_path.to_s
     C.notification_set_timeout @notify, @timeout
     C.notification_set_urgency @notify, @urgency
     C.notification_set_category @notify, @category.to_s
@@ -46,6 +46,25 @@ class Libnotify::Notification
 
   def to_unsafe
     @notify
+  end
+
+  # set the timeout at `sec`, in seconds
+  def timeout=(sec : Float::Primitive)
+    timeout = (sec * 1000).round
+  end
+
+  # set the urgency, based on the symbols `:critical`, `:normal`, `:low`
+  def urgency=(urgency : Symbol)
+    urgency = case urgency
+              when :low
+                Libnotify::C::Notifyurgency::NotifyUrgencyLow
+              when :normal
+                Libnotify::C::Notifyurgency::NotifyUrgencyNormal
+              when :critical
+                Libnotify::C::Notifyurgency::NotifyUrgencyCritical
+              else
+                raise "Invalid Notifyurgency"
+              end
   end
 
   private def init_app!
