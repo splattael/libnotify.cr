@@ -11,18 +11,13 @@ class Libnotify::Notification
   property transient : Bool
   property urgency : Libnotify::C::Notifyurgency
 
-  private def init_app!
-    C.init @app_name if C.is_initted == 0
-    C.set_app_name @app_name if C.get_app_name != @app_name
-  end
-
   def initialize(@summary = nil, @body = nil, @icon = nil,
                  @timeout = -1, @category = nil, @urgency = Libnotify::C::Notifyurgency::NotifyUrgencyNormal,
                  @append = false, @transient = true,
                  @app_name = "default")
     init_app!
     @notify = C.notification_new @summary.to_s, @body.to_s, @icon.to_s
-    update!
+    update
   end
 
   def initialize(@summary = nil, @body = nil, @icon = nil,
@@ -32,7 +27,7 @@ class Libnotify::Notification
     init_app!
     @notify = C.notification_new @summary.to_s, @body.to_s, @icon.to_s
     yield self
-    update!
+    update
   end
 
   def show(gerror = nil)
@@ -40,7 +35,7 @@ class Libnotify::Notification
     self
   end
 
-  private def update!
+  def update
     C.notification_update @notify, @summary.to_s, @body.to_s, @icon.to_s
     C.notification_set_timeout @notify, @timeout
     C.notification_set_urgency @notify, @urgency
@@ -49,12 +44,12 @@ class Libnotify::Notification
     self
   end
 
-  {% for attribute in ["summary", "body", "icon", "app", "timeout", "append", "transient", "urgency"] %}
+  def to_unsafe
+    @notify
+  end
 
-    def {{attribute.id}}=(v)
-      @{{attribute.id}} = v
-      update!
-    end
-
-  {% end %}
+  private def init_app!
+    C.init @app_name if C.is_initted == 0
+    C.set_app_name @app_name if C.get_app_name != @app_name
+  end
 end
