@@ -45,5 +45,3 @@ describe Libnotify do
     end
   end
 end
-
-require "./notification_spec"
