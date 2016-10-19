@@ -44,9 +44,10 @@ class Libnotify::Notification
     self
   end
 
-  def to_unsafe
-    @notify
-  end
+  # Use the C bindings if you really need the raw pointer
+  # def to_unsafe
+  #   @notify
+  # end
 
   # set the timeout at `sec`, in seconds
   def timeout=(sec : Float::Primitive)
