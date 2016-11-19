@@ -85,6 +85,16 @@ $ ./main < ../libnotify.cr/crystal_lib/libnotify.cr  > ../libnotify.cr/src/libno
 4. Push to the branch (git push origin my-new-feature)
 5. Create a new Pull Request
 
+
+## Release
+
+* Make sure `make spec` is green
+* Commit all changes
+* Bump version in `src/libnotify/version.cr`
+* Adjust version in `README.md` and `shard.yml`
+* `make release`
+
+
 ## Contributors
 
 - [splattael](https://github.com/splattael) Peter Suschlik - creator, maintainer

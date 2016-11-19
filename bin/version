@@ -1,0 +1,5 @@
+#!/usr/bin/env crystal
+
+require "../src/libnotify/version"
+
+print Libnotify::VERSION
