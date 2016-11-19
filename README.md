@@ -59,10 +59,12 @@ $ make update
 $ make spec
 ```
 
-### Debian
+### Linux
 
 ```
-$ apt-get install libnotify
+apt-get install libnotify-dev # debian
+pacman -S libnotify           # archlinux
+dnf install libnotify         # fedora
 ```
 
 ### Generate libnotify/c.cr
