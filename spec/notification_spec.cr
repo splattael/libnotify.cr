@@ -1,16 +1,11 @@
 describe Libnotify::Notification do
-  it "Init" do
-    w = Libnotify::Notification.new("summary", "body", "/").show
+  it "initializes" do
+    w = Libnotify::Notification.new("summary", "body")
     w.summary.should eq "summary"
     w.body.should eq "body"
-    w.icon_path.should eq "/"
   end
 
-  it "Init with block" do
-    Libnotify::Notification.new "init" do |n|
-      n.body = "Block is ok"
-    end.show
-
+  it "initializes with block" do
     Libnotify::Notification.new do |notify|
       notify.summary = "hello"
       notify.body = "world"
@@ -19,11 +14,11 @@ describe Libnotify::Notification do
       notify.urgency = :critical # :low, :normal, :critical
       notify.append = false      # default true
       notify.transient = true    # default false
-      notify.icon_path = "/usr/share/icons/gnome/scalable/emblems/emblem-default.svg"
-    end
+      notify.icon_path = File.expand_path("images/crystal-120x120.png")
+    end.show
   end
 
-  it "Init and update" do
+  it "initializes and updates" do
     n = Libnotify::Notification.new "update 1" do |n|
       n.body = "Should not be displayed"
     end

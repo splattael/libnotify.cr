@@ -36,7 +36,7 @@ dnf install libnotify     # fedora
 ```crystal
 require "libnotify"
 
-n = Libnotify::Notification.new do |notify|
+n = Libnotify.show do |notify|
   notify.summary    = "hello"
   notify.body       = "world"
   notify.timeout    = 1.5
@@ -47,14 +47,11 @@ n = Libnotify::Notification.new do |notify|
   notify.icon_path  = "/usr/share/icons/gnome/scalable/emblems/emblem-default.svg"
 end
 
-n = Libnotify::Notification.new(summary: "big", body: "body text").show
+n = Libnotify.new(summary: "big", body: "body text").show
 sleep 1
 n.body = "hello world"
 n.update.show
 ```
-
-For now just run: `make spec`
-
 
 ## Development
 
