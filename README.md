@@ -1,7 +1,5 @@
 # Libnotify for Crystal
 
-:warning: :construction: :construction: :construction: :warning:
-
 [![Build Status](https://travis-ci.org/splattael/libnotify.cr.svg?branch=master)](https://travis-ci.org/splattael/libnotify.cr)
 [![Shard version](https://img.shields.io/badge/libnotify.cr-v0.1.0-orange.svg)](http://crystalshards.xyz/?filter=libnotify)
 
