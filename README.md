@@ -59,3 +59,4 @@ For now just run: `make spec`
 ## Contributors
 
 - [splattael](https://github.com/splattael) Peter Suschlik - creator, maintainer
+- [Nephos](https://github.com/Nephos) Arthur Poulet - contributor
