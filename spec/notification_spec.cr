@@ -32,4 +32,10 @@ describe Libnotify::Notification do
       n.summary = "update 2"
     end.show
   end
+
+  it "default summary and body to an empty string" do
+    # TODO capture stderr and check for warnings
+    Libnotify::Notification.new.show
+    Libnotify::Notification.new(summary: "", body: "").show
+  end
 end

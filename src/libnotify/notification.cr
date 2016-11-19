@@ -1,6 +1,7 @@
 require "./c"
 
 class Libnotify::Notification
+  getter notify : C::Notifynotification*
   property summary : String?
   property body : String?
   property icon_path : String?
@@ -16,7 +17,7 @@ class Libnotify::Notification
                  @append = false, @transient = true,
                  @app_name = "default")
     init_app!
-    @notify = C.notification_new @summary.to_s, @body.to_s, @icon_path.to_s
+    @notify = new_notification(@summary, @body, @icon_path)
     update!
   end
 
@@ -25,7 +26,7 @@ class Libnotify::Notification
                  @append = false, @transient = true,
                  @app_name = "default", &block)
     init_app!
-    @notify = C.notification_new @summary.to_s, @body.to_s, @icon_path.to_s
+    @notify = new_notification(@summary, @body, @icon_path)
     yield self
     update!
   end
@@ -81,7 +82,8 @@ class Libnotify::Notification
   end
 
   private def update!
-    C.notification_update @notify, @summary.to_s, @body.to_s, @icon_path.to_s
+    summary, body = ensure_nonempty(@summary, @body)
+    C.notification_update @notify, summary.to_s, body.to_s, @icon_path.to_s
     C.notification_set_timeout @notify, @timeout
     C.notification_set_urgency @notify, @urgency
     C.notification_set_category @notify, @category.to_s
@@ -92,5 +94,16 @@ class Libnotify::Notification
   private def init_app!
     C.init @app_name if C.is_initted == 0
     C.set_app_name @app_name if C.get_app_name != @app_name
+  end
+
+  private def new_notification(summary, body, icon_path)
+    summary, body = ensure_nonempty(summary, body)
+    C.notification_new summary.to_s, body.to_s, icon_path.to_s
+  end
+
+  private def ensure_nonempty(summary, body)
+    summary = " " if summary.nil? || summary.empty?
+    body = " " if body.nil? || body.empty?
+    return summary, body
   end
 end
