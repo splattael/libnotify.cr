@@ -42,6 +42,13 @@ class Libnotify::Notification
     update!
   end
 
+  def update(@summary = nil, @body = nil, @icon_path = nil,
+             @timeout = -1, @category = nil, @urgency = Libnotify::C::Notifyurgency::NotifyUrgencyNormal,
+             @append = false, @transient = true,
+             @app_name = "default")
+    update!
+  end
+
   # Display the notification on the screen with the last modification
   def show
     update!
