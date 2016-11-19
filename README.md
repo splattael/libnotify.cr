@@ -32,11 +32,21 @@ dnf install libnotify     # fedora
 ```crystal
 require "libnotify"
 
-Libnotify::C.notify_init("test")
-icon_path = File.expand_path("images/crystal-120x120.png")
-notify = Libnotify::C.notify_notification_new("summary", "body", icon_path)
-Libnotify::C.notify_notification_show(notify, nil)
+n = Libnotify::Notification.new do |notify|
+  notify.summary    = "hello"
+  notify.body       = "world"
+  notify.timeout    = 1.5
+  notify.timeout    = 1500
+  notify.urgency    = :critical   # :low, :normal, :critical
+  notify.append     = false       # default true
+  notify.transient  = true        # default false
+  notify.icon_path  = "/usr/share/icons/gnome/scalable/emblems/emblem-default.svg"
+end
 
+n = Libnotify::Notification.new(summary: "big", body: "body text").show
+sleep 1
+n.body = "hello world"
+n.update.show
 ```
 
 For now just run: `make spec`
@@ -44,8 +54,24 @@ For now just run: `make spec`
 
 ## Development
 
-* `make update`
-* `make spec`
+```
+$ make update
+$ make spec
+```
+
+### Debian
+
+```
+$ apt-get install libnotify
+```
+
+### Generate libnotify/c.cr
+
+```
+$ git clone https://github.com/crystal-lang/crystal_lib
+$ cd crystal_lib
+$ ./main < ../libnotify.cr/crystal_lib/libnotify.cr  > ../libnotify.cr/src/libnotify/c.cr
+```
 
 
 ## Contributing
