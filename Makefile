@@ -15,7 +15,7 @@ clean:
 	rm -fr .crystal
 
 release:
-	git commit -av -e -m "Release v${VERSION}" && \
+	git commit -av -m "Release v${VERSION}" && \
 	git tag -f v${VERSION} && \
 	git push && \
 	git push --tags -f
