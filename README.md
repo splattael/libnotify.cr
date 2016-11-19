@@ -2,6 +2,9 @@
 
 :warning: :construction: :construction: :construction: :warning:
 
+[![Build Status](https://travis-ci.org/splattael/libnotify.cr.svg?branch=master)](https://travis-ci.org/splattael/libnotify.cr)
+[![Shard version](https://img.shields.io/badge/libnotify.cr-v0.1.0-orange.svg)](http://crystalshards.xyz/?filter=libnotify)
+
 Bindings for [GNOME's Libnotify](https://developer.gnome.org/libnotify/).
 
 For the Ruby version see https://rubygems.org/gems/libnotify.
@@ -16,6 +19,7 @@ Add this to your application's `shard.yml`:
 dependencies:
   libnotify:
     github: splattael/libnotify.cr
+    version: ~> 0.1.0
 ```
 
 ### Linux

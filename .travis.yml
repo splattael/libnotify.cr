@@ -1,1 +1,11 @@
 language: crystal
+dist: trusty
+
+crystal:
+  - latest
+
+before_install:
+  - sudo apt-get install libnotify-dev
+
+before_script:
+  - crystal -v
