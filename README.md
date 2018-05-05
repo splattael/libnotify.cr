@@ -95,5 +95,5 @@ $ ./main < ../libnotify.cr/crystal_lib/libnotify.cr  > ../libnotify.cr/src/libno
 
 ## Contributors
 
-- [splattael](https://github.com/splattael) Peter Suschlik - creator, maintainer
+- [splattael](https://github.com/splattael) Peter Leitzen - creator, maintainer
 - [Nephos](https://github.com/Nephos) Arthur Poulet - contributor
