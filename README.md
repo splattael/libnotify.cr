@@ -17,7 +17,7 @@ Add this to your application's `shard.yml`:
 dependencies:
   libnotify:
     github: splattael/libnotify.cr
-    version: ~> 0.2.0
+    version: ~> 0.3.0
 ```
 
 ### Linux
