@@ -1,7 +1,7 @@
 require "./c"
 
 class Libnotify::Notification
-  getter notify : C::Notifynotification*
+  getter notify : C::NotifyNotification*
   property summary : String?
   property body : String?
   property icon_path : String?
@@ -10,10 +10,10 @@ class Libnotify::Notification
   property category : String?
   property append : Bool
   property transient : Bool
-  property urgency : Libnotify::C::Notifyurgency
+  property urgency : Libnotify::C::NotifyUrgency
 
   def initialize(@summary = nil, @body = nil, @icon_path = nil,
-                 @timeout = -1, @category = nil, @urgency = Libnotify::C::Notifyurgency::NotifyUrgencyNormal,
+                 @timeout = -1, @category = nil, @urgency = Libnotify::C::NotifyUrgency::NotifyUrgencyNormal,
                  @append = false, @transient = true,
                  @app_name = "default")
     init_app!
@@ -22,7 +22,7 @@ class Libnotify::Notification
   end
 
   def initialize(@summary = nil, @body = nil, @icon_path = nil,
-                 @timeout = -1, @category = nil, @urgency = Libnotify::C::Notifyurgency::NotifyUrgencyNormal,
+                 @timeout = -1, @category = nil, @urgency = Libnotify::C::NotifyUrgency::NotifyUrgencyNormal,
                  @append = false, @transient = true,
                  @app_name = "default", &block)
     init_app!
@@ -36,7 +36,7 @@ class Libnotify::Notification
   # It resets the fields to their default value / nil or use the arguments.
   # Then, it yield a block where it is possible to modify all of them.
   def update(@summary = nil, @body = nil, @icon_path = nil,
-             @timeout = -1, @category = nil, @urgency = Libnotify::C::Notifyurgency::NotifyUrgencyNormal,
+             @timeout = -1, @category = nil, @urgency = Libnotify::C::NotifyUrgency::NotifyUrgencyNormal,
              @append = false, @transient = true,
              @app_name = "default", &block)
     yield self
@@ -44,7 +44,7 @@ class Libnotify::Notification
   end
 
   def update(@summary = nil, @body = nil, @icon_path = nil,
-             @timeout = -1, @category = nil, @urgency = Libnotify::C::Notifyurgency::NotifyUrgencyNormal,
+             @timeout = -1, @category = nil, @urgency = Libnotify::C::NotifyUrgency::NotifyUrgencyNormal,
              @append = false, @transient = true,
              @app_name = "default")
     update!
@@ -71,13 +71,13 @@ class Libnotify::Notification
   def urgency=(urgency : Symbol)
     urgency = case urgency
               when :low
-                Libnotify::C::Notifyurgency::NotifyUrgencyLow
+                Libnotify::C::NotifyUrgency::NotifyUrgencyLow
               when :normal
-                Libnotify::C::Notifyurgency::NotifyUrgencyNormal
+                Libnotify::C::NotifyUrgency::NotifyUrgencyNormal
               when :critical
-                Libnotify::C::Notifyurgency::NotifyUrgencyCritical
+                Libnotify::C::NotifyUrgency::NotifyUrgencyCritical
               else
-                raise "Invalid Notifyurgency"
+                raise "Invalid NotifyUrgency"
               end
   end
 

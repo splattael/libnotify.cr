@@ -71,6 +71,8 @@ dnf install libnotify         # fedora
 ```
 $ git clone https://github.com/crystal-lang/crystal_lib
 $ cd crystal_lib
+$ apt install libclang-dev
+$ shards install && make
 $ ./main < ../libnotify.cr/crystal_lib/libnotify.cr  > ../libnotify.cr/src/libnotify/c.cr
 ```
 
