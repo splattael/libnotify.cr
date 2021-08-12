@@ -1,7 +1,7 @@
 # Libnotify for Crystal
 
 [![Build Status](https://travis-ci.org/splattael/libnotify.cr.svg?branch=master)](https://travis-ci.org/splattael/libnotify.cr)
-[![Shard version](https://img.shields.io/badge/libnotify.cr-v0.3.2-orange.svg)](http://crystalshards.xyz/?filter=libnotify)
+[![Shard version](https://img.shields.io/badge/libnotify.cr-v0.4.0-orange.svg)](http://crystalshards.xyz/?filter=libnotify)
 
 Bindings for [GNOME's Libnotify](https://developer.gnome.org/libnotify/).
 
@@ -17,7 +17,7 @@ Add this to your application's `shard.yml`:
 dependencies:
   libnotify:
     github: splattael/libnotify.cr
-    version: ~> 0.3.2
+    version: ~> 0.4.0
 ```
 
 ### Linux
