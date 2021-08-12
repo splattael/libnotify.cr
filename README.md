@@ -99,3 +99,4 @@ $ ./main < ../libnotify.cr/crystal_lib/libnotify.cr  > ../libnotify.cr/src/libno
 
 - [splattael](https://github.com/splattael) Peter Leitzen - creator, maintainer
 - [Nephos](https://github.com/Nephos) Arthur Poulet - contributor
+- [brodi1](https://github.com/brodi1) Brodi - contributor
